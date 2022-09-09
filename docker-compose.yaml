@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  php:
+    container_name: laravel8-basic-php-container #container名の指定
+    build: ./docker/php #Dockerfileのあるディレクトリのpathを指定
+    tty: true #docker-compose upでコンテナを起動させた時に、コンテナを起動させ続ける
+    networks: #サービスごとにどのネットワークに接続するのかを指定
+      - default #docker network lsで確認可能
+    ports:
+      - ${MY_IP}:${WEB_PORT}:80 #ホストIP:ホスト:コンテナ ${WEB_PORT}のポートがきたら、80のポートを使う
+    volumes: #mount
+      - ${PROJECT_PATH_HOST}:/var/www/html
+
+  mysql:
+    container_name: laravel8-basic-mysql-container
+    build: ./docker/mysql
+    tty: true
+    expose: #マシン上にポートを露出するが公開はされない。リンクされたサービスのみアクセスができる
+      - "3306" #mysqlにアクセスが可能
+    volumes:
+      - ./DBdata:/var/lib/mysql
+      - ./conf/mysql/my.cnf:/etc/mysql/conf.d/my.cnf #my.cnfにmysqlの設定ファイルを書いてマウントする
+    environment: #環境変数の追加
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DB_NAME}
