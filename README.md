@@ -35,3 +35,6 @@ check http://localhost/
 
     mysql
     docker exec -it laravel8-basic-mysql-container mysql -u root -p
+
+phpMyAdminへのログイン
+http://localhost:4040/
