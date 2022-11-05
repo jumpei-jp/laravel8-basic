@@ -12,4 +12,15 @@ class UserController extends Controller
     {
         return view('user.create');
     }
+
+    /**
+     * User作成内容の確認
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function confirm(Request $request)
+    {
+        return $request;
+    }
 }

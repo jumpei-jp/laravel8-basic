@@ -19,5 +19,6 @@ Route::get('/', function () {
 });
 
 Route::prefix('user')->group(function () {
-    Route::get('/register', [UserController::class, 'create'])->name('create');
+    Route::get('/register', [UserController::class, 'create'])->name('user.create');
+    Route::post('/confirm', [UserController::class, 'confirm'])->name('user.confirm');
 });
