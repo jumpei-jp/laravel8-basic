@@ -28,6 +28,18 @@ This is test repository for Laravel8
 
 check http://localhost/
 
+#### tailwind install(only first time)
+[Install Tailwind CSS with Laravel](https://tailwindcss.com/docs/guides/laravel)
+
+    docker exec -it laravel8-basic-php-container bash
+    cd /var/www/html/laravel8
+    apt update
+    apt install nodejs npm
+
+    npm install -D tailwindcss postcss autoprefixer
+    npx tailwindcss init -p
+    npm run dev
+
 ## login command
 
     php
@@ -36,5 +48,5 @@ check http://localhost/
     mysql
     docker exec -it laravel8-basic-mysql-container mysql -u root -p
 
-phpMyAdminへのログイン
+Login to phpMyAdmin
 http://localhost:4040/
